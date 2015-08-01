@@ -1,2 +1,4 @@
 # EasyHT
-Easy Hash Table: An simple, portable (both in user space and kernel space) and extendable implementation of hash table.
+__Easy Hash Table:__
+An simple, portable (both in user space and kernel space) and extendable C implementation of hash table.
+
