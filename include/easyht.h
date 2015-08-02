@@ -2,7 +2,12 @@
 #define EASYHT_H
 
 #define KEY_T       unsigned
-#define VALUE_T     void*
+#define VALUE_T     int
+
+// error code defination
+#define SUCCESS 0
+#define KEY_EXISTED 201
+#define KEY_NOT_FOUND 202
 
 struct bucket{
     KEY_T key;
@@ -24,6 +29,6 @@ int put(struct hash_table* table, KEY_T key, VALUE_T value);
 
 VALUE_T* get(struct hash_table* table, KEY_T key);
 
-int remove(struct hash_table* table, KEY_T key);
+int erase(struct hash_table* table, KEY_T key);
 
 #endif
