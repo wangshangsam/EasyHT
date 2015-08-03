@@ -1,6 +1,6 @@
 #include "easyht.h"
 
-#define KERNEL
+//#define KERNEL
 
 #ifdef KERNEL // include the kernel headers
 
@@ -139,7 +139,38 @@ VALUE_T* get(struct hash_table* table, KEY_T key){
 }
 
 int erase(struct hash_table* table, KEY_T key){
-    return 0;
+    unsigned index = hash(key, table->array_size);
+
+    struct bucket* curr = NULL;
+    struct bucket* prev = NULL;
+
+    if (!(table->bucket_chains_array[index])){
+        return -KEY_NOT_FOUND;
+    }
+
+    for (curr = table->bucket_chains_array[index], prev = NULL;
+            curr != NULL;
+            prev = curr, curr = curr->next){
+    
+        if (curr->key == key){ // found it!
+
+            if (!prev){ // this is the first bucket
+                table->bucket_chains_array[index] = curr->next;
+            }
+            else{
+                // get it out of the list
+                prev->next = curr->next;
+            }
+
+            // free the current
+            free(curr);
+            return 0;
+        }
+        else
+            continue;
+
+    }
+
+    // haven't found the key 
+    return -KEY_NOT_FOUND;
 }
-
-

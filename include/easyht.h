@@ -1,8 +1,7 @@
 #ifndef EASYHT_H
 #define EASYHT_H
 
-#define KEY_T       unsigned
-#define VALUE_T     int
+#include "easyht_config.h"
 
 // error code defination
 #define SUCCESS 0
